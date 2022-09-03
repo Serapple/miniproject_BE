@@ -28,9 +28,9 @@ public class Member extends Timestamped{
     @JsonIgnore
     private String password;
 
-    public Member(MemberRequestDto userRequestDto) {
+    public Member(MemberRequestDto userRequestDto, String password) {
         this.username = userRequestDto.getUsername();
-        this.password = userRequestDto.getPassword();
+        this.password = password;
     }
 
     @Override
