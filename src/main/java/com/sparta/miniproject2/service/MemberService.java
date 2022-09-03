@@ -1,8 +1,8 @@
 package com.sparta.miniproject2.service;
 
-import com.sparta.miniproject2.domain.User;
-import com.sparta.miniproject2.dto.UserRequestDto;
-import com.sparta.miniproject2.repository.UserRepository;
+import com.sparta.miniproject2.domain.Member;
+import com.sparta.miniproject2.dto.MemberRequestDto;
+import com.sparta.miniproject2.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,14 +12,14 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class MemberService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public String createUser(UserRequestDto userRequestDto) {
-        Optional<User> optionalUser = userRepository.findByUsername(userRequestDto.getUsername());
+    public String createUser(MemberRequestDto userRequestDto) {
+        Optional<Member> optionalUser = memberRepository.findByUsername(userRequestDto.getUsername());
         if (optionalUser.isPresent()) {
             return "중복된 닉네임입니다.";
         }
@@ -30,8 +30,8 @@ public class UserService {
             passwordEncoder.encode(userRequestDto.getPassword());
         }
 
-        User user = new User(userRequestDto);
-        userRepository.save(user);
-        return "redirect:/user/login";
+        Member user = new Member(userRequestDto);
+        memberRepository.save(user);
+        return "redirect:/api/member/login";
     }
 }

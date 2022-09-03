@@ -1,6 +1,6 @@
 package com.sparta.miniproject2.service;
 
-import com.sparta.miniproject2.domain.User;
+import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.shared.Authority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-    private User user;
+    private Member user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

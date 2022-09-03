@@ -1,7 +1,7 @@
 package com.sparta.miniproject2.service;
 
-import com.sparta.miniproject2.domain.User;
-import com.sparta.miniproject2.repository.UserRepository;
+import com.sparta.miniproject2.domain.Member;
+import com.sparta.miniproject2.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,11 +14,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Member> user = userRepository.findByUsername(username);
         return user
                 .map(UserDetailsImpl::new)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
