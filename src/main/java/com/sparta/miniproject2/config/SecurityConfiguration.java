@@ -48,7 +48,7 @@ public class SecurityConfiguration {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/api/member/**").permitAll()
                 .anyRequest().authenticated();
 
         return http.build();

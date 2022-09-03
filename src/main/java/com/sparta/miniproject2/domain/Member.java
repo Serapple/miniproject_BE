@@ -1,7 +1,7 @@
 package com.sparta.miniproject2.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sparta.miniproject2.dto.UserRequestDto;
+import com.sparta.miniproject2.dto.MemberRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User extends Timestamped{
+public class Member extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class User extends Timestamped{
     @JsonIgnore
     private String password;
 
-    public User(UserRequestDto userRequestDto) {
+    public Member(MemberRequestDto userRequestDto) {
         this.username = userRequestDto.getUsername();
         this.password = userRequestDto.getPassword();
     }
@@ -41,7 +41,7 @@ public class User extends Timestamped{
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
             return false;
         }
-        User user = (User) o;
+        Member user = (Member) o;
         return id != null && Objects.equals(id, user.id);
     }
 
