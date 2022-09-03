@@ -1,7 +1,11 @@
 package com.sparta.miniproject2.config;
 
+import com.sparta.miniproject2.jwt.AccessDeniedHandlerException;
+import com.sparta.miniproject2.jwt.AuthenticationEntryPointException;
+import com.sparta.miniproject2.jwt.TokenProvider;
 import com.sparta.miniproject2.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -22,9 +26,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class SecurityConfiguration {
 
+    @Value("${jwt.secret}")
+    String SECRET_KEY;
+    private final TokenProvider tokenProvider;
     private final UserDetailsServiceImpl userDetailsService;
-//    private final AccessDeniedHandlerException accessDeniedHandlerException;
-//    private final AuthenticationEntryPointException authenticationEntryPointException;
+    private final AccessDeniedHandlerException accessDeniedHandlerException;
+    private final AuthenticationEntryPointException authenticationEntryPointException;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,18 +45,23 @@ public class SecurityConfiguration {
 
         http.csrf().disable()
 
-//                .exceptionHandling()
-//                .authenticationEntryPoint(authenticationEntryPointException)
-//                .accessDeniedHandler(accessDeniedHandlerException)
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPointException)
+                .accessDeniedHandler(accessDeniedHandlerException)
 
-//                .and()
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/member/**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/api/post/**").permitAll()
+                .anyRequest().authenticated()
+
+                // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
+                .and()
+                .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
 
         return http.build();
     }
