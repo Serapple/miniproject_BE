@@ -22,7 +22,7 @@ public class MemberController {
         return memberService.createUser(memberRequestDto);
     }
 
-    @PostMapping(value = "/api/member/logout")
+    @PostMapping(value = "/api/auth/member/logout")
     public String logout(HttpServletRequest request) {
         return memberService.logout(request);
     }
