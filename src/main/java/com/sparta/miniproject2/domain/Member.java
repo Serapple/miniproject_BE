@@ -28,8 +28,13 @@ public class Member extends Timestamped{
     @JsonIgnore
     private String password;
 
+<<<<<<< Updated upstream
     public Member(MemberRequestDto userRequestDto, String password) {
         this.username = userRequestDto.getUsername();
+=======
+    public Member(MemberRequestDto memberRequestDto, String password) {
+        this.username = memberRequestDto.getUsername();
+>>>>>>> Stashed changes
         this.password = password;
     }
 

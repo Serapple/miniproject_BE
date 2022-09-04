@@ -25,20 +25,28 @@ public class MemberService {
 
 
     @Transactional
-    public String createUser(MemberRequestDto userRequestDto) {
-        Optional<Member> optionalUser = memberRepository.findByUsername(userRequestDto.getUsername());
-        if (optionalUser.isPresent()) {
+    public String createUser(MemberRequestDto memberRequestDto) {
+        Optional<Member> optionalMember = memberRepository.findByUsername(memberRequestDto.getUsername());
+        if (optionalMember.isPresent()) {
             return "중복된 닉네임입니다.";
         }
 
-        if (!userRequestDto.getPassword().equals(userRequestDto.getPasswordConfirm())) {
+        if (!memberRequestDto.getPassword().equals(memberRequestDto.getPasswordConfirm())) {
             return "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
         }
             String pw = passwordEncoder.encode(userRequestDto.getPassword());
 
 
+<<<<<<< Updated upstream
         Member user = new Member(userRequestDto, pw);
         memberRepository.save(user);
+=======
+
+        String pw = passwordEncoder.encode(memberRequestDto.getPassword());
+
+        Member member = new Member(memberRequestDto, pw);
+        memberRepository.save(member);
+>>>>>>> Stashed changes
         return "redirect:/api/member/login";
     }
 
