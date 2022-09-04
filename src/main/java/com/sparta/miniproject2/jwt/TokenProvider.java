@@ -82,7 +82,7 @@ public class TokenProvider {
                 isAssignableFrom(authentication.getClass())) {
             return null;
         }
-        return ((UserDetailsImpl) authentication.getPrincipal()).getUser();
+        return ((UserDetailsImpl) authentication.getPrincipal()).getMember();
     }
 
     // 토큰의 유효성 검사
