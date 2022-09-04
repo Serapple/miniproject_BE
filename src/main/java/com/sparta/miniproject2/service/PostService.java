@@ -18,6 +18,6 @@ public class PostService {
         Post post = new Post(postRequestDto);
         postRepository.save(post);
 
-        return "redirect:/api/auth/post";
+        return "redirect:/api/post";
     }
 }
