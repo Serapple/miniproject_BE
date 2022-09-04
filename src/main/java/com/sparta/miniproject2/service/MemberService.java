@@ -34,19 +34,11 @@ public class MemberService {
         if (!memberRequestDto.getPassword().equals(memberRequestDto.getPasswordConfirm())) {
             return "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
         }
-            String pw = passwordEncoder.encode(userRequestDto.getPassword());
-
-
-<<<<<<< Updated upstream
-        Member user = new Member(userRequestDto, pw);
-        memberRepository.save(user);
-=======
 
         String pw = passwordEncoder.encode(memberRequestDto.getPassword());
 
         Member member = new Member(memberRequestDto, pw);
         memberRepository.save(member);
->>>>>>> Stashed changes
         return "redirect:/api/member/login";
     }
 

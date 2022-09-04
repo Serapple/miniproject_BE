@@ -17,13 +17,9 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping(value = "/api/member/signup")
-<<<<<<< Updated upstream
-    public String signup(@RequestBody @Valid MemberRequestDto userRequestDto) {
-        return memberService.createUser(userRequestDto);
-=======
+
     public String signup(@RequestBody @Valid MemberRequestDto memberRequestDto) {
         return memberService.createUser(memberRequestDto);
->>>>>>> Stashed changes
     }
 
     @PostMapping(value = "/api/member/logout")

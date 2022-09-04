@@ -28,13 +28,9 @@ public class Member extends Timestamped{
     @JsonIgnore
     private String password;
 
-<<<<<<< Updated upstream
-    public Member(MemberRequestDto userRequestDto, String password) {
-        this.username = userRequestDto.getUsername();
-=======
+
     public Member(MemberRequestDto memberRequestDto, String password) {
         this.username = memberRequestDto.getUsername();
->>>>>>> Stashed changes
         this.password = password;
     }
 
@@ -46,8 +42,8 @@ public class Member extends Timestamped{
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
             return false;
         }
-        Member user = (Member) o;
-        return id != null && Objects.equals(id, user.id);
+        Member member = (Member) o;
+        return id != null && Objects.equals(id, member.id);
     }
 
     @Override
