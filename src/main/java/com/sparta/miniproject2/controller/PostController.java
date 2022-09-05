@@ -6,10 +6,13 @@ import com.sparta.miniproject2.dto.UpdateRequestDto;
 import com.sparta.miniproject2.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+<<<<<<< Updated upstream
 import java.util.List;
+=======
+import java.io.IOException;
+>>>>>>> Stashed changes
 
 @RequiredArgsConstructor
 @RestController
@@ -25,6 +28,7 @@ public class PostController {
         return postService.deletePost(id, request);
     }
     @PostMapping(value = "/api/auth/post")
+<<<<<<< Updated upstream
     public String createPost(@RequestBody PostRequestDto requestDto, HttpServletRequest request) {
         return postService.createPost(requestDto, request);
     }
@@ -36,6 +40,15 @@ public class PostController {
     @GetMapping(value = "/api/post/{id}")
     public Object getPost(@PathVariable Long id) {
         return postService.getPost(id);
+=======
+    public String createPost(@RequestBody PostRequestDto postRequestDto, HttpServletRequest request){
+        return postService.createPost(postRequestDto, request);
+>>>>>>> Stashed changes
     }
+
+//    @PostMapping(value = "/api")
+//    public String test(@RequestBody PostRequestDto postRequestDto) {
+//        return postService.test(postRequestDto);
+//    }
 }
 

@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 public class Post extends Timestamped{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,15 +27,26 @@ public class Post extends Timestamped{
     @Column(nullable = false)
     private String youtubeUrl;
 
+    @Column(nullable = false)
+    private String thumbnail;
+
     @JoinColumn(name = "member_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+<<<<<<< Updated upstream
     public Post(PostRequestDto requestDto, Member member) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.youtubeUrl = requestDto.getYoutubeUrl();
         this.member = member;
+=======
+    public Post(PostRequestDto requestDto, String thumbnail) {
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.youtubeUrl = requestDto.getYoutubeUrl();
+        this.thumbnail = thumbnail;
+>>>>>>> Stashed changes
     }
 
     public boolean validateMember(Member member) {
