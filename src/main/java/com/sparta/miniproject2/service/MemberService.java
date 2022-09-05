@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +29,12 @@ public class MemberService {
     public String createMember(MemberRequestDto memberRequestDto) {
         Optional<Member> optionalMember = memberRepository.findByUsername(memberRequestDto.getUsername());
         if (optionalMember.isPresent()) {
-            return "중복된 닉네임입니다.";
+            return "중복된 아이디입니다.";
         }
-
+        Optional<Member> optionalNickname = memberRepository.findByNickname(memberRequestDto.getNickname());
+        if(optionalNickname.isPresent()){
+            return "중복된 닉네임입니다";
+        }
         if (!memberRequestDto.getPassword().equals(memberRequestDto.getPasswordConfirm())) {
             return "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
         }
@@ -65,7 +69,7 @@ public class MemberService {
         }
         TokenDto tokenDto = tokenProvider.generateTokenDto(member);
         tokenToHeaders(tokenDto, response);
-        return "success";
+        return "redirect:/api/post";
     }
 
 
