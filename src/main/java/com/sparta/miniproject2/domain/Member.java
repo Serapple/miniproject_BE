@@ -24,6 +24,9 @@ public class Member extends Timestamped{
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false, unique = true)
+    private String nickname;
+
     @Column(nullable = false)
     @JsonIgnore
     private String password;
@@ -31,6 +34,7 @@ public class Member extends Timestamped{
 
     public Member(MemberRequestDto memberRequestDto, String password) {
         this.username = memberRequestDto.getUsername();
+        this.nickname = memberRequestDto.getNickname();
         this.password = password;
     }
 
