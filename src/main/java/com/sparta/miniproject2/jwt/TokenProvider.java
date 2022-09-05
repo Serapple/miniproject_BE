@@ -116,7 +116,7 @@ public class TokenProvider {
         }
 
         refreshTokenRepository.delete(refreshToken);
-        return "success";
+        return "redirect:/api/post";
     }
 
 }
