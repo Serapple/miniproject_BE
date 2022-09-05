@@ -19,11 +19,16 @@ public class MemberController {
     @PostMapping(value = "/api/member/signup")
 
     public String signup(@RequestBody @Valid MemberRequestDto memberRequestDto) {
-        return memberService.createUser(memberRequestDto);
+        return memberService.createMember(memberRequestDto);
     }
 
     @PostMapping(value = "/api/auth/member/logout")
     public String logout(HttpServletRequest request) {
         return memberService.logout(request);
+    }
+
+    @PostMapping(value = "/api/member/login")
+    public Object login(@RequestBody @Valid LoginRequestDto requestDto, HttpServletResponse response){
+        return memberService.login(requestDto, response);
     }
 }

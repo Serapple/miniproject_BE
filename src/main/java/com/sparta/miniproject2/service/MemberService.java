@@ -25,7 +25,7 @@ public class MemberService {
 
 
     @Transactional
-    public String createUser(MemberRequestDto memberRequestDto) {
+    public String createMember(MemberRequestDto memberRequestDto) {
         Optional<Member> optionalMember = memberRepository.findByUsername(memberRequestDto.getUsername());
         if (optionalMember.isPresent()) {
             return "중복된 닉네임입니다.";
@@ -54,6 +54,21 @@ public class MemberService {
         return tokenProvider.deleteRefreshToken(member);
     }
 
+    @Transactional
+    public Object login(LoginRequestDto requestDto, HttpServletResponse response){
+        Member member = isPresentMember(requestDto.getUsername());
+        if(member == null){
+            return "존재하지 않는 아이디입니다.";
+        }
+        if(!member.validatePassword(passwordEncoder, requestDto.getPassword())){
+            return "비밀번호를 확인해주세요";
+        }
+        TokenDto tokenDto = tokenProvider.generateTokenDto(member);
+        tokenToHeaders(tokenDto, response);
+        return "success";
+    }
+
+
     @Transactional(readOnly = true)
     public Member isPresentMember(String username) {
         Optional<Member> optionalMember = memberRepository.findByUsername(username);
@@ -63,7 +78,7 @@ public class MemberService {
     public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
         response.addHeader("Authorization", "Bearer " + tokenDto.getAccessToken());
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
-        response.addHeader("Access-Token-Expire-Time", tokenDto.getAccessTokenExpiresIn().toString());
     }
+
 
 }

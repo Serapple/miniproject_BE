@@ -17,7 +17,6 @@ public class PostService {
     public String createPost(PostRequestDto postRequestDto) {
         Post post = new Post(postRequestDto);
         postRepository.save(post);
-
         return "redirect:/api/post";
     }
 }
