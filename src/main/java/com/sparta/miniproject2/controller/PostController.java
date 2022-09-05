@@ -19,9 +19,22 @@ public class PostController {
     public String updatePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, HttpServletRequest request){
         return postService.updatePost(id, postRequestDto, request);
     }
-
     @DeleteMapping(value = "/api/auth/post/{id}")
     public String deletePost(@PathVariable Long id, HttpServletRequest request){
         return postService.deletePost(id, request);
     }
+    @PostMapping(value = "/api/auth/post")
+    public String createPost(@RequestBody PostRequestDto requestDto, HttpServletRequest request) {
+        return postService.createPost(requestDto, request);
+    }
+    @GetMapping(value = "/api/post")
+    public List<Post> getAllPosts() {
+        return postService.getAllPost();
+    }
+
+    @GetMapping(value = "/api/post/{id}")
+    public Post getPost(@PathVariable Long id) {
+        return postService.getPost(id);
+    }
 }
+
