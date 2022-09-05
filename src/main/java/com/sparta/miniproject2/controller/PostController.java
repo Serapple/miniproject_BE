@@ -2,6 +2,7 @@ package com.sparta.miniproject2.controller;
 
 import com.sparta.miniproject2.domain.Post;
 import com.sparta.miniproject2.dto.PostRequestDto;
+import com.sparta.miniproject2.dto.UpdateRequestDto;
 import com.sparta.miniproject2.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
-    @PutMapping(value= "/api/auth/post/{id}")
-    public String updatePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, HttpServletRequest request){
-        return postService.updatePost(id, postRequestDto, request);
+    @PatchMapping(value= "/api/auth/post/{id}")
+    public String updatePost(@PathVariable Long id, @RequestBody UpdateRequestDto requestDto, HttpServletRequest request){
+        return postService.updatePost(id, requestDto, request);
     }
     @DeleteMapping(value = "/api/auth/post/{id}")
     public String deletePost(@PathVariable Long id, HttpServletRequest request){

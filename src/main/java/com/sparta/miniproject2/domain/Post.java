@@ -1,6 +1,7 @@
 package com.sparta.miniproject2.domain;
 
 import com.sparta.miniproject2.dto.PostRequestDto;
+import com.sparta.miniproject2.dto.UpdateRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,9 +40,7 @@ public class Post extends Timestamped{
     public boolean validateMember(Member member) {
         return !this.member.equals(member);
     }
-    public void update(PostRequestDto requestDto){
-        this.title = requestDto.getTitle();
+    public void update(UpdateRequestDto requestDto){
         this.content = requestDto.getContent();
-        this.youtubeUrl = requestDto.getYoutubeUrl();
     }
 }

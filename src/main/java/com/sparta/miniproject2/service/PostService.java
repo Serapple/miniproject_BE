@@ -3,18 +3,12 @@ package com.sparta.miniproject2.service;
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.Post;
 import com.sparta.miniproject2.dto.PostRequestDto;
+import com.sparta.miniproject2.dto.UpdateRequestDto;
 import com.sparta.miniproject2.jwt.TokenProvider;
 import com.sparta.miniproject2.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +59,7 @@ public class PostService {
     
     //게시글 수정
     @Transactional
-    public String updatePost(Long id, PostRequestDto postRequestDto, HttpServletRequest request){
+    public String updatePost(Long id, UpdateRequestDto requestDto, HttpServletRequest request){
         if (null == request.getHeader("Refresh-Token")) {
             return "로그인이 필요합니다.";
         }
@@ -87,7 +81,7 @@ public class PostService {
             return "작성자만 수정할 수 있습니다.";
         }
 
-        post.update(postRequestDto);
+        post.update(requestDto);
         return "redirect:/api/post";
     }
 
