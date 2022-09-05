@@ -27,7 +27,7 @@ public class PostController {
     }
 
     @GetMapping(value = "/api/post/{id}")
-    public Post getPost(@PathVariable Long id) {
+    public Object getPost(@PathVariable Long id) {
         return postService.getPost(id);
     }
 }

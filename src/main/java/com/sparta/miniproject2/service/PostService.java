@@ -49,11 +49,11 @@ public class PostService {
 
     // 게시글 개별 조회
     @Transactional(readOnly = true)
-    public Post getPost(Long id) {
+    public Object getPost(Long id) {
         Post post = isPresentPost(id);
-//        if (null == post) {
-//            return "존재하지 않는 게시글 id 입니다.";
-//        }
+        if (null == post) {
+            return "존재하지 않는 게시글 id 입니다.";
+        }
         return post;
     }
 
