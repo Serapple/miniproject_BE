@@ -48,7 +48,8 @@
 
 <img width="799" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-02_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11 05 48" src="https://user-images.githubusercontent.com/110282569/188422856-d35c379c-9f6b-4f7a-90e0-14478d097071.png">
 
-[Untitled 1.pdf](https://github.com/Serapple/miniproject_BE/files/9488816/Untitled.1.pdf)
+[와이어프레임.pdf](https://github.com/Serapple/miniproject_BE/files/9488884/default.pdf)
+
 
 
 # 📆 4. 진행 계획
