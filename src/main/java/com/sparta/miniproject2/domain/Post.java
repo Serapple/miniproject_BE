@@ -29,10 +29,11 @@ public class Post extends Timestamped{
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    public Post(PostRequestDto requestDto) {
+    public Post(PostRequestDto requestDto, Member member) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.youtubeUrl = requestDto.getYoutubeUrl();
+        this.member = member;
     }
 
     public boolean validateMember(Member member) {
