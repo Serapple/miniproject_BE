@@ -65,7 +65,7 @@ public class MemberService {
         }
         TokenDto tokenDto = tokenProvider.generateTokenDto(member);
         tokenToHeaders(tokenDto, response);
-        return "success";
+        return "redirect:/api/post";
     }
 
 
