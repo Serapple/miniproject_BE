@@ -3,6 +3,7 @@ package com.sparta.miniproject2.jwt;
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.RefreshToken;
 import com.sparta.miniproject2.dto.TokenDto;
+import com.sparta.miniproject2.dto.response.ResponseDto;
 import com.sparta.miniproject2.repository.RefreshTokenRepository;
 import com.sparta.miniproject2.service.UserDetailsImpl;
 import com.sparta.miniproject2.shared.Authority;
@@ -109,14 +110,14 @@ public class TokenProvider {
     }
 
     @Transactional
-    public String deleteRefreshToken(Member member) {
+    public ResponseDto<?> deleteRefreshToken(Member member) {
         RefreshToken refreshToken = isPresentRefreshToken(member);
         if (null == refreshToken) {
-            return "존재하지 않는 Token 입니다.";
+            return ResponseDto.fail("TOKEN_NOT_FOUND", "존재하지 않는 Token 입니다.");
         }
 
         refreshTokenRepository.delete(refreshToken);
-        return "redirect:/api/post";
+        return ResponseDto.success("success");
     }
 
 }
