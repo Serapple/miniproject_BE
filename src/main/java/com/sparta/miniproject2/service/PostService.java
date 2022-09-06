@@ -3,7 +3,7 @@ package com.sparta.miniproject2.service;
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.Post;
 import com.sparta.miniproject2.dto.PostRequestDto;
-import com.sparta.miniproject2.dto.UpdateRequestDto;
+
 import com.sparta.miniproject2.jwt.TokenProvider;
 import com.sparta.miniproject2.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +59,7 @@ public class PostService {
     
     //게시글 수정
     @Transactional
-    public String updatePost(Long id, UpdateRequestDto requestDto, HttpServletRequest request){
+    public String updatePost(Long id, PostRequestDto requestDto, HttpServletRequest request){
         if (null == request.getHeader("Refresh-Token")) {
             return "로그인이 필요합니다.";
         }

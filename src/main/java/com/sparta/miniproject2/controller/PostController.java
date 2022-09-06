@@ -18,8 +18,8 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
-    @PatchMapping(value= "/api/auth/post/{id}")
-    public String updatePost(@PathVariable Long id, @RequestBody UpdateRequestDto requestDto, HttpServletRequest request){
+    @PutMapping(value= "/api/auth/post/{id}")
+    public String updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, HttpServletRequest request){
         return postService.updatePost(id, requestDto, request);
     }
     @DeleteMapping(value = "/api/auth/post/{id}")

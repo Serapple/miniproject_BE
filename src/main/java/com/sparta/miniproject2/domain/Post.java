@@ -40,7 +40,9 @@ public class Post extends Timestamped{
     public boolean validateMember(Member member) {
         return !this.member.equals(member);
     }
-    public void update(UpdateRequestDto requestDto){
+    public void update(PostRequestDto requestDto){
+        this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+        this.youtubeUrl = requestDto.getYoutubeUrl();
     }
 }
