@@ -18,4 +18,7 @@ public class PostRequestDto {
 
     @NotBlank
     private String youtubeUrl;
+
+    @NotBlank
+    private String youTubeThumbnailUrl;
 }
