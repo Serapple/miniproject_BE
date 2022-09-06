@@ -84,7 +84,7 @@ public class MemberService {
                         .id(member.getId())
                         .username(member.getUsername())
                         .nickname(member.getNickname())
-                        .accessToken(tokenDto.getAccessToken()) //프론트와 협의해보기
+                        .accessToken("Bearer " + tokenDto.getAccessToken()) //프론트와 협의해보기
                         .refreshToken(tokenDto.getRefreshToken()) //프론트와 협의해보기
                         .build()
         );

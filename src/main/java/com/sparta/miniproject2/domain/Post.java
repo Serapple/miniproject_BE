@@ -2,6 +2,7 @@ package com.sparta.miniproject2.domain;
 
 import com.sparta.miniproject2.dto.request.PostRequestDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Post extends Timestamped{
 
     @Id

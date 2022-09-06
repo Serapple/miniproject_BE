@@ -2,6 +2,7 @@ package com.sparta.miniproject2.controller;
 
 import com.sparta.miniproject2.domain.Post;
 import com.sparta.miniproject2.dto.request.PostRequestDto;
+import com.sparta.miniproject2.dto.response.ResponseDto;
 import com.sparta.miniproject2.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,24 +18,24 @@ public class PostController {
 
     private final PostService postService;
     @PutMapping(value= "/api/auth/post/{id}")
-    public String updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, HttpServletRequest request){
+    public ResponseDto<?> updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, HttpServletRequest request){
         return postService.updatePost(id, requestDto, request);
     }
     @DeleteMapping(value = "/api/auth/post/{id}")
-    public String deletePost(@PathVariable Long id, HttpServletRequest request){
+    public ResponseDto<?> deletePost(@PathVariable Long id, HttpServletRequest request){
         return postService.deletePost(id, request);
     }
     @PostMapping(value = "/api/auth/post")
-    public String createPost(@RequestBody PostRequestDto requestDto, HttpServletRequest request) {
+    public ResponseDto<?> createPost(@RequestBody PostRequestDto requestDto, HttpServletRequest request) {
         return postService.createPost(requestDto, request);
     }
     @GetMapping(value = "/api/post")
-    public List<Post> getAllPosts() {
+    public ResponseDto<?> getAllPosts() {
         return postService.getAllPost();
     }
 
     @GetMapping(value = "/api/post/{id}")
-    public Object getPost(@PathVariable Long id) {
+    public ResponseDto<?> getPost(@PathVariable Long id) {
         return postService.getPost(id);
     }
 
