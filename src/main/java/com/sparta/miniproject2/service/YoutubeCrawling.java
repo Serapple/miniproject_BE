@@ -17,7 +17,6 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-@Service
 public class YoutubeCrawling {
 
 
