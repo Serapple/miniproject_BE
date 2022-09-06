@@ -47,6 +47,23 @@ public class MemberService {
     }
 
     @Transactional
+    public String login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
+        Member member = isPresentMember(loginRequestDto.getUsername());
+        if (null == member) {
+            return "사용자를 찾을 수 없습니다.";
+        }
+
+        if (!member.validatePassword(passwordEncoder, loginRequestDto.getPassword())) {
+            return "사용자를 찾을 수 없습니다.";
+        }
+
+        TokenDto tokenDto = tokenProvider.generateTokenDto(member);
+        tokenToHeaders(tokenDto, response);
+
+        return "redirect:/api/post";
+    }
+
+    @Transactional
     public String logout(HttpServletRequest request) {
         if(!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
             return "Token이 유효하지 않습니다.";
