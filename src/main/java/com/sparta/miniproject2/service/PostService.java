@@ -19,6 +19,7 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final TokenProvider tokenProvider;
+    private final YoutubeCrawling youtubeCrawling;
 
     // 게시글 생성
     @Transactional
@@ -36,7 +37,9 @@ public class PostService {
             return "Token이 유효하지 않습니다.";
         }
 
-        Post post = new Post(requestDto, member);
+        String thumbnailUrl = youtubeCrawling.crawling(requestDto.getYoutubeUrl());
+
+        Post post = new Post(requestDto, thumbnailUrl, member);
         postRepository.save(post);
         return "redirect:/api/post";
     }

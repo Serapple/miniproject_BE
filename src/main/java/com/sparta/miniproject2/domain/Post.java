@@ -26,14 +26,18 @@ public class Post extends Timestamped{
     @Column(nullable = false)
     private String youtubeUrl;
 
+    @Column(nullable = false)
+    private String youtubeThumbnailUrl;
+
     @JoinColumn(name = "member_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    public Post(PostRequestDto requestDto, Member member) {
+    public Post(PostRequestDto requestDto, String thumbnail, Member member) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.youtubeUrl = requestDto.getYoutubeUrl();
+        this.youtubeThumbnailUrl = thumbnail;
         this.member = member;
     }
 
