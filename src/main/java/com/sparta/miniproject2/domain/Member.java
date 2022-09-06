@@ -1,7 +1,7 @@
 package com.sparta.miniproject2.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sparta.miniproject2.dto.MemberRequestDto;
+import com.sparta.miniproject2.dto.request.MemberRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package com.sparta.miniproject2.controller;
 
 import com.sparta.miniproject2.domain.Post;
-import com.sparta.miniproject2.dto.PostRequestDto;
+import com.sparta.miniproject2.dto.request.PostRequestDto;
 import com.sparta.miniproject2.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

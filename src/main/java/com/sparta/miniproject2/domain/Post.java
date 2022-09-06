@@ -1,7 +1,6 @@
 package com.sparta.miniproject2.domain;
 
-import com.sparta.miniproject2.dto.PostRequestDto;
-import com.sparta.miniproject2.dto.UpdateRequestDto;
+import com.sparta.miniproject2.dto.request.PostRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +27,6 @@ public class Post extends Timestamped{
     private String youtubeUrl;
 
     @Column(nullable = false)
-
     private String youtubeThumbnailUrl;
 
     @JoinColumn(name = "member_id", nullable = false)
@@ -36,7 +34,6 @@ public class Post extends Timestamped{
     private Member member;
 
     public Post(PostRequestDto requestDto, String thumbnail, Member member) {
-
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.youtubeUrl = requestDto.getYoutubeUrl();
@@ -48,9 +45,10 @@ public class Post extends Timestamped{
     public boolean validateMember(Member member) {
         return !this.member.equals(member);
     }
-    public void update(PostRequestDto requestDto){
+    public void update(PostRequestDto requestDto, String thumbnail){
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.youtubeUrl = requestDto.getYoutubeUrl();
+        this.youtubeThumbnailUrl = thumbnail;
     }
 }
