@@ -2,7 +2,7 @@ package com.sparta.miniproject2.service;
 
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.Post;
-import com.sparta.miniproject2.dto.PostRequestDto;
+import com.sparta.miniproject2.dto.request.PostRequestDto;
 import com.sparta.miniproject2.jwt.TokenProvider;
 import com.sparta.miniproject2.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +36,7 @@ public class PostService {
         if (null == member) {
             return "Token이 유효하지 않습니다.";
         }
-
         String thumbnailUrl = youtubeCrawling.crawling(requestDto.getYoutubeUrl());
-
         Post post = new Post(requestDto, thumbnailUrl, member);
         postRepository.save(post);
         return "redirect:/api/post";
@@ -82,8 +80,8 @@ public class PostService {
         if (post.validateMember(member)) {
             return "작성자만 수정할 수 있습니다.";
         }
-
-        post.update(requestDto);
+        String thumbnailUrl = youtubeCrawling.crawling(requestDto.getYoutubeUrl());
+        post.update(requestDto, thumbnailUrl);
         return "redirect:/api/post";
     }
 
@@ -129,4 +127,3 @@ public class PostService {
         }
 
     }
-}
