@@ -15,6 +15,8 @@ import java.io.IOException;
 >>>>>>> Stashed changes
 
 @RequiredArgsConstructor
+//@CrossOrigin(origins = "https://miniproject-nine.vercel.app")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class PostController {
 
