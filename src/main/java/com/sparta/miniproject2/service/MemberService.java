@@ -82,6 +82,7 @@ public class MemberService {
     public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
         response.addHeader("Authorization", "Bearer " + tokenDto.getAccessToken());
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
+        //response.addHeader("Access-Control-Allow-Origin", "https://miniproject-nine.vercel.app");
     }
 
 

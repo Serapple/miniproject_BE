@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
+//@CrossOrigin(origins = "https://miniproject-nine.vercel.app")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class PostController {
 

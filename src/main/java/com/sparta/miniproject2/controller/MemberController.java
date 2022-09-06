@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
+//@CrossOrigin(origins = "https://miniproject-nine.vercel.app")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class MemberController {
 
