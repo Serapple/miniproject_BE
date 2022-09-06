@@ -1,4 +1,4 @@
-package com.sparta.miniproject2.dto;
+package com.sparta.miniproject2.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

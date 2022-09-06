@@ -12,6 +12,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedMethods("*")
                 .allowedHeaders("*")
+                .allowedMethods("*")
                 .allowedOrigins("http://localhost:3000")
                 .exposedHeaders("Authorization")
                 .exposedHeaders("Refresh-Token")
