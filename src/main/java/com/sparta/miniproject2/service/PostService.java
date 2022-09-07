@@ -70,7 +70,7 @@ public class PostService {
     // 게시글 전체 조회
     @Transactional
     public ResponseDto<?> getAllPost() {
-        List<Post> postList = postRepository.findAllByOrderByModifiedAtDesc();
+        List<Post> postList = postRepository.findAllByOrderByCreatedAtDesc();
         List<PostResponseDto> postResponseDto = new ArrayList<>();
         for (Post post : postList) {
             postResponseDto.add(
@@ -156,7 +156,6 @@ public class PostService {
             if (null == request.getHeader("Refresh-Token")) {
                 return ResponseDto.fail("MEMBER_NOT_FOUND", "로그인이 필요합니다.");
             }
-
             if (null == request.getHeader("Authorization")) {
                 return ResponseDto.fail("MEMBER_NOT_FOUND", "로그인이 필요합니다.");
             }
@@ -170,10 +169,10 @@ public class PostService {
             if (null == post) {
                 return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
             }
+
             if (post.validateMember(member)) {
                 return ResponseDto.fail("BAD_REQUEST", "작성자만 삭제할 수 있습니다.");
             }
-
 
             postRepository.deleteById(id);
             return ResponseDto.success("delete success");
