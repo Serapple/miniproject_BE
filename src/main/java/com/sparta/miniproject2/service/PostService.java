@@ -1,5 +1,6 @@
 package com.sparta.miniproject2.service;
 
+import com.sparta.miniproject2.crawling.YoutubeCrawling;
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.Post;
 import com.sparta.miniproject2.dto.request.PostRequestDto;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Optional;
 
 @Service
