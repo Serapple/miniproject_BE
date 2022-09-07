@@ -33,7 +33,7 @@ public class Post extends Timestamped{
     @Column(nullable = false)
     private String youtubeThumbnailUrl;
 
-    @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     @JoinColumn(name = "member_id", nullable = false)
