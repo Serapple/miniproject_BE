@@ -1,17 +1,21 @@
 package com.sparta.miniproject2.service;
 
+import com.sparta.miniproject2.domain.Comment;
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.Post;
 import com.sparta.miniproject2.dto.request.PostRequestDto;
+import com.sparta.miniproject2.dto.response.CommentResponseDto;
 import com.sparta.miniproject2.dto.response.PostResponseDto;
 import com.sparta.miniproject2.dto.response.ResponseDto;
 import com.sparta.miniproject2.jwt.TokenProvider;
+import com.sparta.miniproject2.repository.CommentRepository;
 import com.sparta.miniproject2.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +27,7 @@ public class PostService {
     private final TokenProvider tokenProvider;
     private final YoutubeCrawling youtubeCrawling;
 
+    private final CommentRepository commentRepository;
     // 게시글 생성
     @Transactional
     public ResponseDto<?> createPost(PostRequestDto requestDto, HttpServletRequest request) {
@@ -64,7 +69,23 @@ public class PostService {
     // 게시글 전체 조회
     @Transactional
     public ResponseDto<?> getAllPost() {
-        return ResponseDto.success(postRepository.findAllByOrderByModifiedAtDesc());
+        List<Post> postList = postRepository.findAllByOrderByModifiedAtDesc();
+        List<PostResponseDto> postResponseDto = new ArrayList<>();
+        for (Post post : postList) {
+            postResponseDto.add(
+                    PostResponseDto.builder()
+                            .id(post.getId())
+                            .title(post.getTitle())
+                            .content(post.getContent())
+                            .youtubeUrl(post.getYoutubeUrl())
+                            .youtubeThumbnailUrl(post.getYoutubeThumbnailUrl())
+                            .createdAt(post.getCreatedAt())
+                            .modifiedAt(post.getModifiedAt())
+                            .build()
+            );
+        }
+        return ResponseDto.success(postResponseDto);
+        //return ResponseDto.success(postRepository.findAllByOrderByModifiedAtDesc());
     }
 
     // 게시글 개별 조회
@@ -74,7 +95,31 @@ public class PostService {
         if (null == post) {
             return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
         }
-        return ResponseDto.success(post);
+        List<Comment> commentList = commentRepository.findAllByPost(post);
+        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
+        for(Comment comment: commentList){
+            commentResponseDtoList.add(
+                    CommentResponseDto
+                            .builder()
+                            .id(comment.getId())
+                            .username(comment.getMember().getUsername())
+                            .nickname(comment.getMember().getNickname())
+                            .content(comment.getContent())
+                            .build()
+            );
+        }
+        return ResponseDto.success(
+                PostResponseDto.builder()
+                        .id(post.getId())
+                        .title(post.getTitle())
+                        .content(post.getContent())
+                        .youtubeUrl(post.getYoutubeUrl())
+                        .youtubeThumbnailUrl(post.getYoutubeThumbnailUrl())
+                        .commentList(commentResponseDtoList)
+                        .createdAt(post.getCreatedAt())
+                        .modifiedAt(post.getModifiedAt())
+                        .build()
+        );
     }
 
     //게시글 수정
