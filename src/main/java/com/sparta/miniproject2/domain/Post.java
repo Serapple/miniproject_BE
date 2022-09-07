@@ -1,6 +1,7 @@
 package com.sparta.miniproject2.domain;
 
 import com.sparta.miniproject2.dto.request.PostRequestDto;
+import com.sparta.miniproject2.dto.response.CommentResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -45,7 +46,6 @@ public class Post extends Timestamped{
         this.youtubeUrl = requestDto.getYoutubeUrl();
         this.youtubeThumbnailUrl = thumbnail;
         this.member = member;
-
     }
 
     public boolean validateMember(Member member) {

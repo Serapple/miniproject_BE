@@ -1,5 +1,7 @@
 package com.sparta.miniproject2.domain;
 
+import com.sparta.miniproject2.dto.request.CommentRequestDto;
+import com.sparta.miniproject2.dto.request.PostRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,4 +33,12 @@ public class Comment extends Timestamped {
     @Column(nullable = false)
     private String content;
 
+    public Comment(CommentRequestDto requestDto, Post post, Member member) {
+        this.content = requestDto.getContent();
+        this.post = post;
+        this.member = member;
+    }
+    public boolean validateMember(Member member) {
+        return !this.member.equals(member);
+    }
 }
