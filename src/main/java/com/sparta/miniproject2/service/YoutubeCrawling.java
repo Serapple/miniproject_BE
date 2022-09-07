@@ -1,5 +1,6 @@
 package com.sparta.miniproject2.service;
 
+import com.sparta.miniproject2.dto.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,6 +13,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -38,7 +40,22 @@ public class YoutubeCrawling {
         System.out.println("썸네일 " + element);
 
         return element;
-
     }
+
+    @Transactional
+    public boolean urlCheck(String url) {
+//        String url = "https://www.youtube.com/watch?v=wkBRKBLDNAc";
+        String urlCheck = url.substring(0,23);
+        String urlCheck1 = new String("https://www.youtube.com");
+        String urlCheck2 = new String("http://www.youtube.com/");
+
+        boolean result = false;
+        if (!urlCheck.equals(urlCheck1) && !urlCheck.equals(urlCheck2)) {
+        } else {
+            result = true;
+        }
+        return result;
+    }
+
 }
 

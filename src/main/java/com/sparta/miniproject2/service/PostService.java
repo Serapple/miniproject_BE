@@ -38,6 +38,13 @@ public class PostService {
         if (null == member) {
             return ResponseDto.fail("INVALID_TOKEN","Token이 유효하지 않습니다.");
         }
+
+        boolean check = false;
+        boolean urlCheck = youtubeCrawling.urlCheck(requestDto.getYoutubeUrl());
+        if (check == urlCheck) {
+            return ResponseDto.fail("NOT_YOUTUBE_LINK","유튜브 링크가 아닙니다.");
+        }
+
         String thumbnailUrl = youtubeCrawling.crawling(requestDto.getYoutubeUrl());
         Post post = new Post(requestDto, thumbnailUrl, member);
         postRepository.save(post);
