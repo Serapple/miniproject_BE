@@ -27,10 +27,5 @@ public class CommentController {
                                         HttpServletRequest request) {
         return commentService.deleteComment(id, request);
     }
-
-    @GetMapping(value = "/api/comment/{id}")
-    public ResponseDto<?> getAllComments(@PathVariable Long id) {
-
-        return commentService.getAllCommentsByPost(id);
-    }
+    
 }

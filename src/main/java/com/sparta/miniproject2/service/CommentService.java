@@ -46,18 +46,6 @@ public class CommentService {
         return ResponseDto.success("create success");
     }
 
-    @Transactional(readOnly = true)
-    public ResponseDto<?> getAllCommentsByPost(Long Id) {
-        Post post = postService.isPresentPost(Id);
-        if (null == post) {
-            return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
-        }
-
-        List<Comment> commentList = commentRepository.findAllByPost(post);
-
-        return ResponseDto.success(commentList);
-    }
-
     @Transactional
     public ResponseDto<?> deleteComment(Long id, HttpServletRequest request) {
         if (null == request.getHeader("Refresh-Token")) {
