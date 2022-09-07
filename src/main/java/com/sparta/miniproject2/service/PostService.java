@@ -1,5 +1,6 @@
 package com.sparta.miniproject2.service;
 
+import com.sparta.miniproject2.crawling.YoutubeCrawling;
 import com.sparta.miniproject2.domain.Comment;
 import com.sparta.miniproject2.domain.Member;
 import com.sparta.miniproject2.domain.Post;

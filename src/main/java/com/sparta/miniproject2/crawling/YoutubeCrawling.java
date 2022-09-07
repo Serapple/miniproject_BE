@@ -1,19 +1,11 @@
-package com.sparta.miniproject2.service;
+package com.sparta.miniproject2.crawling;
 
-import com.sparta.miniproject2.dto.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.springframework.stereotype.Service;
-
-
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Objects;
 
