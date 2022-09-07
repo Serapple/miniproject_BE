@@ -18,6 +18,8 @@ public class PostResponseDto {
     private String content;
     private String youtubeUrl;
     private String youtubeThumbnailUrl;
+    private String username;
+    private String nickname;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private List<CommentResponseDto> commentList;
