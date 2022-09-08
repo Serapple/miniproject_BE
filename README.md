@@ -1,6 +1,8 @@
 
 # 🎬 유튜브 추천 사이트 만들기
 
+유튜브 시연영상 링크: https://www.youtube.com/watch?v=rr7lbXD_fuw
+
 
 # 🔎 1. 프로젝트 소개
 
